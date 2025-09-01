@@ -49,6 +49,7 @@ class Player extends PositionComponent with CollisionCallbacks {
     size = Vector2(squareWidth, squareHeight);
 
     add(RectangleHitbox());
+    
   }
 
   @override
