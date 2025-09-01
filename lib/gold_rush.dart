@@ -8,6 +8,6 @@ class GoldRush extends FlameGame with HasCollisionDetection {
   FutureOr<void> onLoad() async {
     super.onLoad();
     add(Player());
-    add(ScreenHitbox());// not yet
+    add(ScreenHitbox());
   }
 }
