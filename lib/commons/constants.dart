@@ -17,11 +17,10 @@ const String PATH_CHARACTER_MEDIA = "george.png";
 const String PATH_ENEMY_MEDIA = "zombie_n_skeleton.png";
 
 // ignore: constant_identifier_names
-const Size SIZE_ENEMY = Size(192 / 6 + 0.5, 256 / 4 + 0.5);
+const Size SIZE_ENEMY = Size(192 / 6, 256 / 4);
 
 // ignore: constant_identifier_names
 const Size SIZE_SKELETON = SIZE_ENEMY;
 
 // ignore: constant_identifier_names
 const Size SIZE_MAIN_CHARACTER = Size(192 / 4, 192 / 4);
- 

@@ -1,20 +1,21 @@
 import 'dart:async';
 import 'package:flame/collisions.dart';
+import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'package:goldrush_2d/commons/constants.dart';
-import 'package:goldrush_2d/components/characters/character.dart';
+import 'package:goldrush_2d/commons/constants.dart'; 
+import 'package:goldrush_2d/components/characters/character_enemy.dart';
 
-class Zombie extends Character {
+class CharacterZombie extends EnemyCharacter {
   final double zbSpeed;
   final Offset zbPosition;
-  Zombie({required this.zbSpeed, required this.zbPosition})
+  CharacterZombie({required this.zbSpeed, required this.zbPosition})
     : super(
-        characterPosition: zbPosition,
-        characterSize: SIZE_ENEMY,
-        characterSpeed: zbSpeed,
+        position: zbPosition,
+        size: SIZE_ENEMY,
+        speed: zbSpeed,
       );
 
   @override
@@ -47,7 +48,12 @@ class Zombie extends Character {
       from: 0,
       to: 3,
     );
-    animation = animDown;
+    animation = animUp;
+    var bg = RectangleComponent(
+      size: SIZE_MAIN_CHARACTER.toVector2(),
+      paint: Paint()..color = Colors.blue.withAlpha(20),
+    );
+    add(bg);
     add(RectangleHitbox());
   }
 }
