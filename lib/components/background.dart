@@ -1,10 +1,14 @@
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:goldrush_2d/components/characters/character_main.dart';
 
-class Background extends PositionComponent {
+class Background extends PositionComponent with TapCallbacks {
   static final backgroundPaint = BasicPalette.blue.withAlpha(20).paint();
   late double screenWidth, screenHeight;
+  final CharacterMain cMain;
+  Background({required this.cMain});
   @override
   Future<void> onLoad() async {
     super.onLoad();
@@ -24,5 +28,11 @@ class Background extends PositionComponent {
       Rect.fromPoints(position.toOffset(), size.toOffset()),
       backgroundPaint,
     );
+  }
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    super.onTapUp(event);
+    cMain.moveToLocation(event);
   }
 }

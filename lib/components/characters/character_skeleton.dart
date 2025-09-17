@@ -1,31 +1,24 @@
 import 'dart:async';
 
 import 'package:flame/collisions.dart';
+import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:goldrush_2d/commons/constants.dart';
-import 'package:goldrush_2d/components/characters/character.dart';
-import 'package:goldrush_2d/utils/extension.dart' as myExt;
+import 'package:goldrush_2d/components/characters/character_enemy.dart';
 
-class Skeleton extends Character {
+class CharacterSkeleton extends EnemyCharacter {
   final double skeSpeed;
   final Offset skePosition;
-  Skeleton({required this.skeSpeed, required this.skePosition})
-    : super(
-        characterPosition: skePosition,
-        characterSize: SIZE_SKELETON,
-        characterSpeed: skeSpeed,
-      );
+  CharacterSkeleton({required this.skeSpeed, required this.skePosition})
+    : super(position: skePosition, size: SIZE_SKELETON, speed: skeSpeed);
   @override
   FutureOr<void> onLoad() async {
     super.onLoad();
     var spite = await Flame.images.load(PATH_ENEMY_MEDIA);
-    var spriteSheet = SpriteSheet(
-      image: spite,
-      srcSize: Vector2(SIZE_ENEMY.width, SIZE_ENEMY.height),
-    );
+    var spriteSheet = SpriteSheet(image: spite, srcSize: Vector2(32, 64));
     animDown = spriteSheet.createAnimation(
       row: 0,
       stepTime: 0.2,
@@ -45,6 +38,12 @@ class Skeleton extends Character {
       to: 5,
     );
     animUp = spriteSheet.createAnimation(row: 3, stepTime: 0.2, from: 3, to: 5);
+    animation = animUp;
+    var bg = RectangleComponent(
+      size: SIZE_MAIN_CHARACTER.toVector2(),
+      paint: Paint()..color = Colors.green.withAlpha(20),
+    );
+    add(bg);
     add(RectangleHitbox());
   }
 }
